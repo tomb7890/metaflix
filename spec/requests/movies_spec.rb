@@ -5,7 +5,7 @@ RSpec.describe "Movies", type: :request do
 
     it "display some movies"  do
       visit movies_path
-      page.should have_content "Clouds of Sils Maria"
+      expect(page).to have_content("Clouds of Sils Maria")
     end
   end
 end
