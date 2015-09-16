@@ -18,9 +18,9 @@ class MoviesController < ApplicationController
   def update
     movie = Movie.find params[:id]
     if movie.update_attributes user_params # params[:movie]
-      redirect_to movies_path
+      redirect_to movies_path, :notice => "Your movie has successfully been updated."
     else
-      redirect_to :back
+      redirect_to :back, :notice => "There was an error updating your movie."
     end
   end
 
