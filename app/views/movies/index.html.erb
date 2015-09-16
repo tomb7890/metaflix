@@ -1,6 +1,11 @@
 <h1>Movies#index</h1>
+<%= render 'form'  %>
+
 <ul>
-<% for movie in @movies %>
-    <li><%= movie.title %> </li>
+<% for m in @movies %>
+    <li> <%= m.title %>
+        | <%= link_to 'Edit', edit_movie_path(m) %>
+
+    <BR></li>
 <% end %>
 </ul>

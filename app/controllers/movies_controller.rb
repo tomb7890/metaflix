@@ -1,6 +1,33 @@
 class MoviesController < ApplicationController
   def index
-
+    @movie = Movie.new
     @movies = Movie.all
   end
+
+  def create
+    Movie.create(user_params)
+    redirect_to :back
+    # render :text => params.inspect
+  end
+
+  def edit
+    @movie = Movie.find params[:id]
+  end
+
+
+  def update
+    movie = Movie.find params[:id]
+    if movie.update_attributes user_params # params[:movie]
+      redirect_to movies_path
+    else
+      redirect_to :back
+    end
+  end
+
+private
+
+  def user_params
+    params.require(:movie).permit(:title, :description)
+  end
+
 end
