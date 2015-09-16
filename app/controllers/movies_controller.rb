@@ -14,7 +14,6 @@ class MoviesController < ApplicationController
     @movie = Movie.find params[:id]
   end
 
-
   def update
     movie = Movie.find params[:id]
     if movie.update_attributes user_params # params[:movie]
@@ -24,8 +23,12 @@ class MoviesController < ApplicationController
     end
   end
 
-private
+  def destroy
+    Movie.destroy params[:id]
+    redirect_to :back, :notice => 'Movie has been deleted.'
+  end
 
+private
   def user_params
     params.require(:movie).permit(:title, :description)
   end
