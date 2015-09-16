@@ -2,10 +2,11 @@
 <%= render 'form'  %>
 
 <ul>
-<% for m in @movies %>
-    <li> <%= m.title %>
-        | <%= link_to 'Edit', edit_movie_path(m) %>
-
+<% for mx in @movies %>
+    <li id="movie_<%= mx.id %>">
+        <%= mx.title %>
+        | <%= link_to 'Edit', edit_movie_path(mx) %>
+        | <%= link_to 'Delete', movie_path(mx), :method => 'delete' %>
     <BR></li>
 <% end %>
 </ul>
