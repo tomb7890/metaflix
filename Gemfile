@@ -32,6 +32,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'mechanize' # for netflix 'news'
+gem 'httparty'  # for omdbapi
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
