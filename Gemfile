@@ -41,7 +41,6 @@ group :development, :test do
 
   gem 'minitest'
   gem 'test-unit'
-  gem 'turn'
 
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
