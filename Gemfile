@@ -35,6 +35,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'mechanize' # for netflix 'news'
 gem 'httparty'  # for omdbapi
 
+gem 'rename'
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'

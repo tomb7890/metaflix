@@ -15,7 +15,7 @@ require "sprockets/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module Newatnextflix
+module Metaflix
   class Application < Rails::Application
 
     # the new line added for autoload of lib
