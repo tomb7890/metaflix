@@ -6,9 +6,9 @@ class Fetchdata
 
   def get_movies
 
-    (0...3).each do |page|
+    (1...6).each do |page|
 
-      url = 'http://can.whatsnewonnetflix.com/?page=#{page}'
+      url = "http://can.whatsnewonnetflix.com/?page=#{page}"
 
       agent = Mechanize.new { |agent| agent.user_agent_alias = "Mac Safari" }
       html = agent.get(url).body
@@ -36,10 +36,12 @@ class Fetchdata
         rm = response['Metascore']
         rx = response['imdbRating']
 
-        Movie.create(title: title, year: year,
-                     description: description,
-                     imdbscore: rx,
-                     metascore: rm )
+        unless Movie.find_by(description: description)
+          Movie.create(title: title, year: year,
+                       description: description,
+                       imdbscore: rx,
+                       metascore: rm )
+        end
 
       end
     end
