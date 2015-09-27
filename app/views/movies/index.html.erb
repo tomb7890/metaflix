@@ -2,19 +2,26 @@
 
 <ul>
 
-<TABLE>
-<% for mx in @movies %>
+<TABLE class=table>
+    <thead>
+        <tr>
+            <t>Title</th>
+            <th>IMDB score</th>
+            <th>Metascore</th>
+            <th>descrption</th>
+            <th>launchurl</th>
+        </tr>
+    </thead>
+
+<% for mx in @filteredmovies %>
     <TR id="movie_<%= mx.id %>">
-        <TD><%= mx.title %></TD>
-
+        <TD><%= mx.title %>
+        <img width=220px src= <%= mx.imgurl %> </IMG><TD>
         <TD><%= mx.imdbscore %></TD>
-
         <TD><%= mx.metascore %></TD>
-
         <TD><%= mx.description %></TD>
-
-</TR>
+        <TD><a target = _blank href="<%= mx.launchurl %>"> <%= mx.launchurl %>  </a> </TD>
+    </TR>
 <% end %>
-
 </TABLE>
 </ul>
