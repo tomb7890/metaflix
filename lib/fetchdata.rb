@@ -20,6 +20,9 @@ class Fetchdata
         description = movieentry.xpath("div[@class='content']//p").first.text() # MOVIE DESCRIPTION
         year = movieentry.xpath('.//span[@class="year"]').text # MOVIE YEAR
 
+        launchurl =   movieentry.xpath("div[@class='content']//a/@href").text()
+        imgurl =      movieentry.xpath("div[@class='cover']//img/@src").text()
+
         puts "[#{title}]"
         puts "\n"
         puts "[#{year}]"
