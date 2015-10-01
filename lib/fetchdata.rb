@@ -4,6 +4,12 @@ class Fetchdata
   require 'httparty'
   require 'open-uri'
 
+  def internationalize(query)
+    require 'webrick'
+    query.force_encoding('binary')
+    query=WEBrick::HTTPUtils.escape(query)
+  end
+
   def get_movies
 
     (1...6).each do |page|
@@ -23,9 +29,10 @@ class Fetchdata
         launchurl =   movieentry.xpath("div[@class='content']//a/@href").text()
         imgurl =      movieentry.xpath("div[@class='cover']//img/@src").text()
 
-        api = "http://www.omdbapi.com/?t=#{title}&y=#{year}&plot=full&r=json"
+        query = "http://www.omdbapi.com/?t=#{title}&y=#{year}&plot=full&r=json"
+        query = internationalize( query )
 
-        response = HTTParty.get(api)
+        response = HTTParty.get(query)
 
         rm = response['Metascore']
         rx = response['imdbRating']
