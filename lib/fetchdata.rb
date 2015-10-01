@@ -32,18 +32,23 @@ class Fetchdata
         query = "http://www.omdbapi.com/?t=#{title}&y=#{year}&plot=full&r=json"
         query = internationalize( query )
 
-        response = HTTParty.get(query)
+        begin
+          response = HTTParty.get(query)
 
-        rm = response['Metascore']
-        rx = response['imdbRating']
+          rm = response['Metascore']
+          rx = response['imdbRating']
 
-        unless Movie.find_by(description: description)
-          Movie.create(title: title, year: year,
-                       description: description,
-                       launchurl: launchurl,
-                       imgurl: imgurl,
-                       imdbscore: rx,
-                       metascore: rm )
+          unless Movie.find_by(description: description)
+            Movie.create(title: title, year: year,
+                         description: description,
+                         launchurl: launchurl,
+                         imgurl: imgurl,
+                         imdbscore: rx,
+                         metascore: rm )
+          end
+
+        rescue => e
+          puts "Exception: #{e} "
         end
 
       end
