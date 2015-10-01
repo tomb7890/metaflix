@@ -39,6 +39,8 @@ class Fetchdata
         unless Movie.find_by(description: description)
           Movie.create(title: title, year: year,
                        description: description,
+                       launchurl: launchurl,
+                       imgurl: imgurl,
                        imdbscore: rx,
                        metascore: rm )
         end
