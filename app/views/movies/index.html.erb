@@ -1,27 +1,41 @@
-<%= render 'form'  %>
+<div class=container>
 
-<ul>
+    <% for mx in @filteredmovies %>
 
-<TABLE class=table>
-    <thead>
-        <tr>
-            <t>Title</th>
-            <th>IMDB score</th>
-            <th>Metascore</th>
-            <th>descrption</th>
-            <th>launchurl</th>
-        </tr>
-    </thead>
+        <div class="row" id="movie_<%= mx.id %>">
 
-<% for mx in @filteredmovies %>
-    <TR id="movie_<%= mx.id %>">
-        <TD><%= mx.title %>
-        <img width=220px src= <%= mx.imgurl %> </IMG><TD>
-        <TD><%= mx.imdbscore %></TD>
-        <TD><%= mx.metascore %></TD>
-        <TD><%= mx.description %></TD>
-        <TD><a target = _blank href="<%= mx.launchurl %>"> <%= mx.launchurl %>  </a> </TD>
-    </TR>
-<% end %>
-</TABLE>
-</ul>
+            <div class="col-md-4">
+                <img class=movieposter src= <%= mx.imgurl %> </img>
+            </div>
+
+            <div class="col-md-4">
+
+                <div class='ratings-bar'>
+                    <div  class="ratings-bar-el">
+                        <h4><%= mx.title %></h4>
+                    </div>
+
+                    <div  class="ratings-bar-el">
+                        IMDB:
+                        <%= mx.imdbscore %>
+                    </div>
+
+                    <div  class="ratings-bar-el">
+                        Metascore:
+                        <%= mx.metascore %>
+                    </div>
+
+                </div> <!-- ratings-bar'-->
+
+                <a target = _blank href="<%= mx.launchurl %>"> <%= mx.launchurl %>  </a>
+
+            </div> <!-- col-md-4 -->
+
+            <div class="col-md-4">
+                <%= mx.description %>
+            </div>
+
+        </div>
+    <% end %>
+
+</div>
