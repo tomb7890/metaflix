@@ -36,6 +36,7 @@ gem 'mechanize' # for netflix 'news'
 gem 'httparty'  # for omdbapi
 
 gem 'rename'
+gem 'kaminari'
 
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'

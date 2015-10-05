@@ -2,7 +2,7 @@ class MoviesController < ApplicationController
   def index
     @movie = Movie.new
     @movies = Movie.all
-    @filteredmovies = Movie.metascore_sixty_or_higher.sort_by(&:created_at)
+    @filteredmovies = Movie.metascore_sixty_or_higher.order(:created_at).reverse_order.page  params[:page]
   end
 
   def create
