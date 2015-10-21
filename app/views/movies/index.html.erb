@@ -8,7 +8,7 @@
         </div>
 
         <% for mx in @filteredmovies %>
-
+            <% if mx.created_at.to_date == md then %>
 
         <div class="row" id="movie_<%= mx.id %>">
 
@@ -44,6 +44,7 @@
             </div>
 
         </div>
+    <% end %>
     <% end %>
     <% end %>
 
