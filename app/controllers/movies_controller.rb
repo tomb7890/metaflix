@@ -3,6 +3,8 @@ class MoviesController < ApplicationController
     @movie = Movie.new
     @movies = Movie.all
     @filteredmovies = Movie.metascore_sixty_or_higher.order(:created_at).reverse_order.page  params[:page]
+
+    make_filtered_movie_dates
   end
 
   def create
@@ -29,9 +31,20 @@ class MoviesController < ApplicationController
     redirect_to :back, :notice => 'Movie has been deleted.'
   end
 
+
 private
   def user_params
     params.require(:movie).permit(:title, :description)
+  end
+
+  def make_filtered_movie_dates
+    @filtered_movie_dates = Array.new
+    @filteredmovies.each do | fm |
+      moviedate = fm.created_at.to_date
+      if not @filtered_movie_dates.include? moviedate
+        @filtered_movie_dates.append( moviedate )
+      end
+    end
   end
 
 end

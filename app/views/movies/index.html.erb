@@ -1,6 +1,14 @@
 <div class=container>
 
-    <% for mx in @filteredmovies %>
+    <% for md in @filtered_movie_dates %>
+
+        <div class="row" >
+            <h3> <%= md.to_formatted_s(:long_ordinal)  %> </h3>
+            <hr>
+        </div>
+
+        <% for mx in @filteredmovies %>
+
 
         <div class="row" id="movie_<%= mx.id %>">
 
@@ -36,6 +44,7 @@
             </div>
 
         </div>
+    <% end %>
     <% end %>
 
 </div>
