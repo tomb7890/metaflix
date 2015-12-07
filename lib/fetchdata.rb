@@ -4,7 +4,7 @@ class Fetchdata
   require 'httparty'
   require 'open-uri'
 
-  def internationalize(query)
+  def escape_query(query)
     require 'webrick'
     query.force_encoding('binary')
     query=WEBrick::HTTPUtils.escape(query)
@@ -30,7 +30,7 @@ class Fetchdata
         imgurl =      movieentry.xpath("div[@class='cover']//img/@src").text()
 
         query = "http://www.omdbapi.com/?t=#{title}&y=#{year}&plot=full&r=json"
-        query = internationalize( query )
+        query = escape_query( query )
 
         begin
           response = HTTParty.get(query)
