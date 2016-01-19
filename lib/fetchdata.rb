@@ -16,7 +16,7 @@ class Fetchdata
 
       url = "http://can.whatsnewonnetflix.com/?page=#{page}"
 
-      agent = Mechanize.new { |agent| agent.user_agent_alias = "Mac Safari" }
+      agent = Mechanize.new { |a| a.user_agent_alias = "Mac Safari" }
       html = agent.get(url).body
       html_doc = Nokogiri::HTML(html)
 
