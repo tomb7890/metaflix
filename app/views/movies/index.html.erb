@@ -1,54 +1,15 @@
 <div class=container>
-
-    <% for md in @filtered_movie_dates %>
-
+    <% for filtered_date in @filtered_movie_dates %>
         <div class="row" >
-            <h3> <%= md.to_formatted_s(:long_ordinal)  %> </h3>
-            <hr>
+            <h3> <%= filtered_date.to_formatted_s(:long_ordinal)  %> </h3>
         </div>
-
-        <% for mx in @filteredmovies %>
-            <% if mx.created_at.to_date == md then %>
-
-        <div class="row" id="movie_<%= mx.id %>">
-
-            <div class="col-md-4">
-                <img class=movieposter src= <%= mx.imgurl %> </img>
-            </div>
-
-            <div class="col-md-4">
-
-                <div class='ratings-bar'>
-                    <div  class="ratings-bar-el">
-                        <h4><%= mx.title %></h4>
-                    </div>
-
-                    <div  class="ratings-bar-el">
-                        IMDB:
-                        <%= mx.imdbscore %>
-                    </div>
-
-                    <div  class="ratings-bar-el">
-                        Metascore:
-                        <%= mx.metascore %>
-                    </div>
-
-                </div> <!-- ratings-bar'-->
-
-                <a target = _blank href="<%= mx.launchurl %>"> <%= mx.launchurl %>  </a>
-
-            </div> <!-- col-md-4 -->
-
-            <div class="col-md-4">
-                <%= mx.description %>
-            </div>
-
-        </div>
+        <hr>
+        <% for movie in @filteredmovies %>
+            <% if movie.created_at.to_date == filtered_date then %>
+                <%=  render partial: "detail", locals: { movie: movie,
+                    filtered_date: filtered_date }  %>
+            <% end %>
+        <% end %>
     <% end %>
-    <% end %>
-    <% end %>
-
 </div>
-
-
 <%= paginate @filteredmovies %>

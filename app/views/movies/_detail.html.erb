@@ -1,0 +1,26 @@
+<div class="row" id="movie_<%= movie.id %>">
+    <div class="col-md-4">
+        <img class=movieposter src= <%= movie.imgurl %> </img>
+    </div>
+    <div class="col-md-4">
+        <div class='ratings-bar'>
+            <div  class="ratings-bar-el">
+                <h4><%= movie.title %></h4>
+            </div>
+            <div  class="ratings-bar-el">
+                IMDB:
+                <%= movie.imdbscore %>
+            </div>
+            <div  class="ratings-bar-el">
+                Metascore:
+                <%= movie.metascore %>
+            </div>
+        </div>
+        <a target = _blank href="<%= movie.launchurl %>">
+            <%= movie.launchurl %>
+        </a>
+    </div>
+    <div class="col-md-4">
+        <%= movie.description %>
+    </div>
+</div>
