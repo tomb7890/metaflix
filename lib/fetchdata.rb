@@ -14,18 +14,18 @@ class Fetchdata
     query=WEBrick::HTTPUtils.escape(query)
   end
 
+  def dom_tree_from_page_no(page, agent)
+    url = "https://newonnetflix.com/canada?page=#{page}"
+    html = agent.get(url).body
+    Nokogiri::HTML(html)
+  end
+
   def get_movies
 
     agent = Mechanize.new { |a| a.user_agent_alias = "Mac Safari" }
 
     (1...6).each do |page|
-
-      url = "https://newonnetflix.com/canada?page=#{page}"
-
-
-      html = agent.get(url).body
-      html_doc = Nokogiri::HTML(html)
-
+      html_doc = dom_tree_from_page_no(page, agent)
       movieentries = html_doc.xpath("//div[contains(concat(' ', @class, ' '), 'mr_')]")
       movieentries.each do |movieentry|
         title = movieentry.xpath("div[@class='cover']//a/@title").text()
