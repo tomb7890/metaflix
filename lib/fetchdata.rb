@@ -16,11 +16,13 @@ class Fetchdata
 
   def get_movies
 
+    agent = Mechanize.new { |a| a.user_agent_alias = "Mac Safari" }
+
     (1...6).each do |page|
 
       url = "https://newonnetflix.com/canada?page=#{page}"
 
-      agent = Mechanize.new { |a| a.user_agent_alias = "Mac Safari" }
+
       html = agent.get(url).body
       html_doc = Nokogiri::HTML(html)
 
