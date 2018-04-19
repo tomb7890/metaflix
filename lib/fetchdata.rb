@@ -30,6 +30,16 @@ class Fetchdata
     attrs
   end
 
+  def create_db_entry(attrs)
+    Movie.create(title:
+                   attrs['title'], year: attrs['year'],
+                 description: attrs['description'],
+                 launchurl: attrs['launchurl'],
+                 imgurl: attrs['imgurl'],
+                 imdbscore: attrs['rx'],
+                 metascore: attrs['rm']) unless Movie.find_by(description: attrs['description'])
+  end
+
   def get_movies
 
     agent = Mechanize.new { |a| a.user_agent_alias = "Mac Safari" }
@@ -46,18 +56,10 @@ class Fetchdata
 
         begin
           response = HTTParty.get(query)
+          attrs['rm'] = response['Metascore']
+          attrs['rx'] = response['imdbRating']
 
-          rm = response['Metascore']
-          rx = response['imdbRating']
-
-          unless Movie.find_by(description: description)
-            Movie.create(title: title, year: year,
-                         description: description,
-                         launchurl: launchurl,
-                         imgurl: imgurl,
-                         imdbscore: rx,
-                         metascore: rm )
-          end
+          create_db_entry(attrs)
 
         rescue => e
           puts "Exception: #{e} "
