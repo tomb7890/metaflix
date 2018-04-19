@@ -20,6 +20,16 @@ class Fetchdata
     Nokogiri::HTML(html)
   end
 
+  def discover_attributes(movieentry)
+    attrs = {}
+    attrs['title'] = movieentry.xpath("div[@class='cover']//a/@title").text()
+    attrs['description'] = movieentry.xpath("div[@class='content']//p").first.text()
+    attrs['year'] = movieentry.xpath('.//span[@class="year"]').text
+    attrs['launchurl'] =   movieentry.xpath("div[@class='content']//a/@href").text()
+    attrs['imgurl'] =  movieentry.xpath("div[@class='cover']//img/@src").text()
+    attrs
+  end
+
   def get_movies
 
     agent = Mechanize.new { |a| a.user_agent_alias = "Mac Safari" }
@@ -28,14 +38,10 @@ class Fetchdata
       html_doc = dom_tree_from_page_no(page, agent)
       movieentries = html_doc.xpath("//div[contains(concat(' ', @class, ' '), 'mr_')]")
       movieentries.each do |movieentry|
-        title = movieentry.xpath("div[@class='cover']//a/@title").text()
-        description = movieentry.xpath("div[@class='content']//p").first.text()
-        year = movieentry.xpath('.//span[@class="year"]').text
 
-        launchurl =   movieentry.xpath("div[@class='content']//a/@href").text()
-        imgurl =      movieentry.xpath("div[@class='cover']//img/@src").text()
+        attrs = discover_attributes(movieentry)
 
-        query = "http://www.omdbapi.com/?t=#{title}&y=#{year}&plot=full&r=json&apikey=#{api_key}"
+        query = "http://www.omdbapi.com/?t=#{attrs['title']}&y=#{attrs['year']}&plot=full&r=json&apikey=#{api_key}"
         query = escape_query( query )
 
         begin
