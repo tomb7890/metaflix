@@ -3,15 +3,16 @@ class Fetchdata
   require "mechanize"
   require 'httparty'
   require 'open-uri'
+  require 'webrick'
 
   def api_key
     ENV['OMDB_API_KEY']
   end
 
-  def escape_query(query)
-    require 'webrick'
-    query.force_encoding('binary')
-    query=WEBrick::HTTPUtils.escape(query)
+  def prepare_query(attrs)
+    query_text = "http://www.omdbapi.com/?t=#{attrs['title']}&y=#{attrs['year']}&plot=full&r=json&apikey=#{api_key}" 
+    query_text.force_encoding('binary')
+    WEBrick::HTTPUtils.escape(query_text)
   end
 
   def dom_tree_from_page_no(page, agent)
@@ -41,30 +42,23 @@ class Fetchdata
   end
 
   def get_movies
-
     agent = Mechanize.new { |a| a.user_agent_alias = "Mac Safari" }
-
     (1...6).each do |page|
       html_doc = dom_tree_from_page_no(page, agent)
       movieentries = html_doc.xpath("//div[contains(concat(' ', @class, ' '), 'mr_')]")
       movieentries.each do |movieentry|
-
         attrs = discover_attributes(movieentry)
 
-        query = "http://www.omdbapi.com/?t=#{attrs['title']}&y=#{attrs['year']}&plot=full&r=json&apikey=#{api_key}"
-        query = escape_query( query )
-
+        query = prepare_query(attrs)
+        
         begin
           response = HTTParty.get(query)
           attrs['rm'] = response['Metascore']
           attrs['rx'] = response['imdbRating']
-
           create_db_entry(attrs)
-
         rescue => e
           puts "Exception: #{e} "
         end
-
       end
     end
   end
