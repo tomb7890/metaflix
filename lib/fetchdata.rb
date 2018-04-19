@@ -18,7 +18,7 @@ class Fetchdata
 
     (1...6).each do |page|
 
-      url = "http://can.whatsnewonnetflix.com/?page=#{page}"
+      url = "https://newonnetflix.com/canada?page=#{page}"
 
       agent = Mechanize.new { |a| a.user_agent_alias = "Mac Safari" }
       html = agent.get(url).body
