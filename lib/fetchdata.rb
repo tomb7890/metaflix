@@ -4,6 +4,10 @@ class Fetchdata
   require 'httparty'
   require 'open-uri'
 
+  def api_key
+    ENV['OMDB_API_KEY']
+  end
+
   def escape_query(query)
     require 'webrick'
     query.force_encoding('binary')
@@ -29,7 +33,7 @@ class Fetchdata
         launchurl =   movieentry.xpath("div[@class='content']//a/@href").text()
         imgurl =      movieentry.xpath("div[@class='cover']//img/@src").text()
 
-        query = "http://www.omdbapi.com/?t=#{title}&y=#{year}&plot=full&r=json"
+        query = "http://www.omdbapi.com/?t=#{title}&y=#{year}&plot=full&r=json&apikey=#{api_key}"
         query = escape_query( query )
 
         begin
