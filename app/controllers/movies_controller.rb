@@ -4,6 +4,11 @@ class MoviesController < ApplicationController
     make_filtered_movie_dates
   end
 
+  def show
+    @movie = Movie.find(params[:id])
+    @fullprofile = OMDB::Lookup.new(@movie.title, @movie.year)
+  end
+
   private
 
   def make_filtered_movies

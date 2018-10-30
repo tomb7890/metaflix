@@ -1,0 +1,125 @@
+<div class='row'>
+  <div class="col-sm-4">
+    <%=  image_tag(@fullprofile.Poster) %>
+
+    <% @fullprofile.Ratings.each do |r |   %>
+
+      <%=  r['Source'] %>: <%=  %>
+      <h1>  <%=  r['Value']   %> </h1> 
+    <% end %>
+
+    
+  </div>
+  <div class="col-sm-8">
+
+    <h2><%= @fullprofile.title %> </h2>
+
+    <table class="table">
+      <tr>
+        <td>Year</td>
+        <td> <%= @fullprofile.Year  %> </td>
+      </tr>
+
+      <tr>
+        <td>Rated</td>
+        <td><%=  @fullprofile.Rated  %></td>
+      </tr>
+      
+      <tr>
+        <td>Released</td>
+        <td><%= @fullprofile.Released %></td>
+      </tr>
+      
+      <tr>
+        <td>Runtime</td>
+        <td><%= @fullprofile.Runtime  %></td>
+      </tr>
+      
+      <tr>
+        <td>Genre</td>
+        <td><%=  @fullprofile.Genre %></td>
+      </tr>
+      
+      <tr>
+        <td>Director</td>
+        <td><%=  @fullprofile.Director %></td>
+      </tr>
+      
+      <tr>
+        <td>Writer</td>
+        <td><%=  @fullprofile.Writer %></td>
+      </tr>
+      
+      <tr>
+        <td>Actors</td>
+        <td><%=  @fullprofile.Actors %></td>
+      </tr>
+      
+      <tr>
+        <td>Plot</td>
+        <td><%=  @fullprofile.Plot %></td>
+      </tr>
+      
+      <tr>
+        <td>Language</td>
+        <td><%=  @fullprofile.Language %></td>
+      </tr>
+      
+      <tr>
+        <td>Country</td>
+        <td><%=  @fullprofile.Country %></td>
+      </tr>
+      
+      <tr>
+        <td>Awards</td>
+        <td><%=  @fullprofile.Awards %></td>
+      </tr>
+
+      <tr>
+        <td>Metascore</td>
+        <td><%=  @fullprofile.Metascore %></td>
+      </tr>
+      
+      <tr>
+        <td>imdbRating</td>
+        <td><%=  @fullprofile.imdbRating %></td>
+      </tr>
+      
+      <tr>
+        <td>imdbVotes</td>
+        <td><%=  @fullprofile.imdbVotes %></td>
+      </tr>
+      
+      <tr>
+        <td>imdbID</td>
+        <td><%=  @fullprofile.imdbID %></td>
+      </tr>
+      
+      <tr>
+        <td>Type</td>
+        <td><%=  @fullprofile.Type %></td>
+      </tr>
+      
+      <tr>
+        <td>DVD</td>
+        <td><%=  @fullprofile.DVD %></td>
+      </tr>
+      
+      <tr>
+        <td>BoxOffice</td>
+        <td><%=  @fullprofile.BoxOffice %></td>
+      </tr>
+      
+      <tr>
+        <td>Production</td>
+        <td><%=  @fullprofile.Production %></td>
+      </tr>
+      
+      <tr>
+        <td>Website</td>
+        <td><%=  @fullprofile.Website %></td>
+      </tr>
+    </table>
+  </div>
+
+
