@@ -61,7 +61,7 @@ group :development, :test do
   gem 'spring'
 end
 
-
+gem 'figaro'
 group :production do
   gem 'rails_12factor', '0.0.2'
 end
