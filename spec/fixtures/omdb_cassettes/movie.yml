@@ -1,0 +1,196 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://www.omdbapi.com/?apikey=b6c5763c&plot=full&t=star%20wars
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 30 Oct 2018 11:15:00 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfduid=deacbfb7fe20a86c62333936365000ba71540898100; expires=Wed, 30-Oct-19
+        11:15:00 GMT; path=/; domain=.omdbapi.com; HttpOnly
+      Cache-Control:
+      - public, max-age=86400
+      Expires:
+      - Wed, 31 Oct 2018 11:15:00 GMT
+      Last-Modified:
+      - Mon, 29 Oct 2018 18:46:01 GMT
+      Vary:
+      - "*, Accept-Encoding"
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Access-Control-Allow-Origin:
+      - "*"
+      Cf-Cache-Status:
+      - HIT
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 471d7625576fab60-YYZ
+    body:
+      encoding: ASCII-8BIT
+      string: '{"Title":"Star Wars: Episode IV - A New Hope","Year":"1977","Rated":"PG","Released":"25
+        May 1977","Runtime":"121 min","Genre":"Action, Adventure, Fantasy, Sci-Fi","Director":"George
+        Lucas","Writer":"George Lucas","Actors":"Mark Hamill, Harrison Ford, Carrie
+        Fisher, Peter Cushing","Plot":"The Imperial Forces, under orders from cruel
+        Darth Vader, hold Princess Leia hostage in their efforts to quell the rebellion
+        against the Galactic Empire. Luke Skywalker and Han Solo, captain of the Millennium
+        Falcon, work together with the companionable droid duo R2-D2 and C-3PO to
+        rescue the beautiful princess, help the Rebel Alliance and restore freedom
+        and justice to the Galaxy.","Language":"English","Country":"USA","Awards":"Won
+        6 Oscars. Another 50 wins & 28 nominations.","Poster":"https://m.media-amazon.com/images/M/MV5BNzVlY2MwMjktM2E4OS00Y2Y3LWE3ZjctYzhkZGM3YzA1ZWM2XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg","Ratings":[{"Source":"Internet
+        Movie Database","Value":"8.6/10"},{"Source":"Rotten Tomatoes","Value":"93%"},{"Source":"Metacritic","Value":"90/100"}],"Metascore":"90","imdbRating":"8.6","imdbVotes":"1,077,767","imdbID":"tt0076759","Type":"movie","DVD":"21
+        Sep 2004","BoxOffice":"N/A","Production":"20th Century Fox","Website":"http://www.starwars.com/episode-iv/","Response":"True"}'
+    http_version: 
+  recorded_at: Tue, 30 Oct 2018 11:15:00 GMT
+- request:
+    method: get
+    uri: http://www.omdbapi.com/?apikey=b6c5763c&plot=full&t=Star%20Wars
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 30 Oct 2018 11:15:00 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfduid=d49c3a9418387c6035e6c5405bc5cc9fb1540898100; expires=Wed, 30-Oct-19
+        11:15:00 GMT; path=/; domain=.omdbapi.com; HttpOnly
+      Cache-Control:
+      - public, max-age=86400
+      Expires:
+      - Wed, 31 Oct 2018 11:15:00 GMT
+      Last-Modified:
+      - Mon, 29 Oct 2018 19:32:15 GMT
+      Vary:
+      - "*, Accept-Encoding"
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Access-Control-Allow-Origin:
+      - "*"
+      Cf-Cache-Status:
+      - HIT
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 471d7625a606ab84-YYZ
+    body:
+      encoding: ASCII-8BIT
+      string: '{"Title":"Star Wars: Episode IV - A New Hope","Year":"1977","Rated":"PG","Released":"25
+        May 1977","Runtime":"121 min","Genre":"Action, Adventure, Fantasy, Sci-Fi","Director":"George
+        Lucas","Writer":"George Lucas","Actors":"Mark Hamill, Harrison Ford, Carrie
+        Fisher, Peter Cushing","Plot":"The Imperial Forces, under orders from cruel
+        Darth Vader, hold Princess Leia hostage in their efforts to quell the rebellion
+        against the Galactic Empire. Luke Skywalker and Han Solo, captain of the Millennium
+        Falcon, work together with the companionable droid duo R2-D2 and C-3PO to
+        rescue the beautiful princess, help the Rebel Alliance and restore freedom
+        and justice to the Galaxy.","Language":"English","Country":"USA","Awards":"Won
+        6 Oscars. Another 50 wins & 28 nominations.","Poster":"https://m.media-amazon.com/images/M/MV5BNzVlY2MwMjktM2E4OS00Y2Y3LWE3ZjctYzhkZGM3YzA1ZWM2XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg","Ratings":[{"Source":"Internet
+        Movie Database","Value":"8.6/10"},{"Source":"Rotten Tomatoes","Value":"93%"},{"Source":"Metacritic","Value":"90/100"}],"Metascore":"90","imdbRating":"8.6","imdbVotes":"1,077,767","imdbID":"tt0076759","Type":"movie","DVD":"21
+        Sep 2004","BoxOffice":"N/A","Production":"20th Century Fox","Website":"http://www.starwars.com/episode-iv/","Response":"True"}'
+    http_version: 
+  recorded_at: Tue, 30 Oct 2018 11:15:00 GMT
+- request:
+    method: get
+    uri: http://www.omdbapi.com/?apikey=b6c5763c&t=Star%20Wars
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 30 Oct 2018 11:53:55 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfduid=d2167f43f137d3d0308381852a7f868561540900435; expires=Wed, 30-Oct-19
+        11:53:55 GMT; path=/; domain=.omdbapi.com; HttpOnly
+      Cache-Control:
+      - public, max-age=86400
+      Expires:
+      - Wed, 31 Oct 2018 11:53:55 GMT
+      Last-Modified:
+      - Tue, 30 Oct 2018 11:53:55 GMT
+      Vary:
+      - "*, Accept-Encoding"
+      X-Aspnet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Access-Control-Allow-Origin:
+      - "*"
+      Cf-Cache-Status:
+      - MISS
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 471daf2bc5c4ab84-YYZ
+    body:
+      encoding: ASCII-8BIT
+      string: '{"Title":"Star Wars: Episode IV - A New Hope","Year":"1977","Rated":"PG","Released":"25
+        May 1977","Runtime":"121 min","Genre":"Action, Adventure, Fantasy, Sci-Fi","Director":"George
+        Lucas","Writer":"George Lucas","Actors":"Mark Hamill, Harrison Ford, Carrie
+        Fisher, Peter Cushing","Plot":"Luke Skywalker joins forces with a Jedi Knight,
+        a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire''s
+        world-destroying battle station, while also attempting to rescue Princess
+        Leia from the evil Darth Vader.","Language":"English","Country":"USA","Awards":"Won
+        6 Oscars. Another 50 wins & 28 nominations.","Poster":"https://m.media-amazon.com/images/M/MV5BNzVlY2MwMjktM2E4OS00Y2Y3LWE3ZjctYzhkZGM3YzA1ZWM2XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg","Ratings":[{"Source":"Internet
+        Movie Database","Value":"8.6/10"},{"Source":"Rotten Tomatoes","Value":"93%"},{"Source":"Metacritic","Value":"90/100"}],"Metascore":"90","imdbRating":"8.6","imdbVotes":"1,077,767","imdbID":"tt0076759","Type":"movie","DVD":"21
+        Sep 2004","BoxOffice":"N/A","Production":"20th Century Fox","Website":"http://www.starwars.com/episode-iv/","Response":"True"}'
+    http_version: 
+  recorded_at: Tue, 30 Oct 2018 11:53:55 GMT
+recorded_with: VCR 4.0.0

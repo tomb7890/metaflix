@@ -1,18 +1,11 @@
 class Fetchdata
 
   require "mechanize"
-  require 'httparty'
   require 'open-uri'
   require 'webrick'
 
   def api_key
     ENV['OMDB_API_KEY']
-  end
-
-  def prepare_query(attrs)
-    query_text = "http://www.omdbapi.com/?t=#{attrs['title']}&y=#{attrs['year']}&plot=full&r=json&apikey=#{api_key}" 
-    query_text.force_encoding('binary')
-    WEBrick::HTTPUtils.escape(query_text)
   end
 
   def dom_tree_from_page_no(page, agent)
@@ -48,13 +41,11 @@ class Fetchdata
       movieentries = html_doc.xpath("//div[contains(concat(' ', @class, ' '), 'mr_')]")
       movieentries.each do |movieentry|
         attrs = discover_attributes(movieentry)
-
-        query = prepare_query(attrs)
-        
         begin
-          response = HTTParty.get(query)
-          attrs['rm'] = response['Metascore']
-          attrs['rx'] = response['imdbRating']
+          response = OMDB::Lookup.new(attrs['title'], attrs['year'])
+          attrs['rm'] = response.Metascore
+          attrs['rx'] = response.imdbRating
+          attrs['imdbid'] = response.imdbID
           create_db_entry(attrs)
         rescue => e
           puts "Exception: #{e} "
