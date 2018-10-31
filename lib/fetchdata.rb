@@ -1,56 +1,33 @@
+require_relative "./newflix"
+
 class Fetchdata
 
-  require "mechanize"
-  require 'open-uri'
-  require 'webrick'
-
-  def api_key
-    ENV['OMDB_API_KEY']
-  end
-
-  def dom_tree_from_page_no(page, agent)
-    url = "https://newonnetflix.com/canada?page=#{page}"
-    html = agent.get(url).body
-    Nokogiri::HTML(html)
-  end
-
-  def discover_attributes(movieentry)
-    attrs = {}
-    attrs['title'] = movieentry.xpath("div[@class='cover']//a/@title").text()
-    attrs['description'] = movieentry.xpath("div[@class='content']//p").first.text()
-    attrs['year'] = movieentry.xpath('.//span[@class="year"]').text
-    attrs['launchurl'] =   movieentry.xpath("div[@class='content']//a/@href").text()
-    attrs['imgurl'] =  movieentry.xpath("div[@class='cover']//img/@src").text()
-    attrs
-  end
-
-  def create_db_entry(attrs)
-    Movie.create(title:
-                   attrs['title'], year: attrs['year'],
-                 description: attrs['description'],
-                 launchurl: attrs['launchurl'],
-                 imgurl: attrs['imgurl'],
-                 imdbscore: attrs['rx'],
-                 metascore: attrs['rm']) unless Movie.find_by(description: attrs['description'])
-  end
-
   def get_movies
-    agent = Mechanize.new { |a| a.user_agent_alias = "Mac Safari" }
-    (1...6).each do |page|
-      html_doc = dom_tree_from_page_no(page, agent)
-      movieentries = html_doc.xpath("//div[contains(concat(' ', @class, ' '), 'mr_')]")
-      movieentries.each do |movieentry|
-        attrs = discover_attributes(movieentry)
+    n = Newflix.new 
+    (1...6).each do |p|
+      movie_list = n.page(p)
+      movie_list.each do |movie|
         begin
-          response = OMDB::Lookup.new(attrs['title'], attrs['year'])
-          attrs['rm'] = response.Metascore
-          attrs['rx'] = response.imdbRating
-          attrs['imdbid'] = response.imdbID
-          create_db_entry(attrs)
+          response = OMDB.new(movie['title'], movie['year'])
+          movie['Metascore'] = response.Metascore
+          movie['imdbRating'] = response.imdbRating
+          create_db_entry(movie)
         rescue => e
-          puts "Exception: #{e} "
+          puts "Fetchdata Exception: #{e}  "
         end
       end
     end
   end
+
+  private
+
+  def create_db_entry(attrs)
+    Movie.create(title:  attrs['title'], year: attrs['year'],
+                 description: attrs['description'],
+                 launchurl: attrs['launchurl'],
+                 imgurl: attrs['imgurl'],
+                 imdbscore: attrs['imdbRating'],
+                 metascore: attrs['Metascore']) unless Movie.find_by(description: attrs['description'])
+  end
+
 end
