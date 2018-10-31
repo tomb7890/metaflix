@@ -1,11 +1,11 @@
-require_relative '../../spec_helper'
+require_relative '../spec_helper'
 
 require 'net/http'
 require 'webmock'
 
 describe 'default instance attributes' do
 
-  let(:movie) { OMDB::Lookup.new('Star Wars') }
+  let(:movie) { OMDB.new('Star Wars') }
 
   it 'must have a title attribute' do
     expect(movie).to respond_to :title
@@ -19,17 +19,22 @@ end
 
 describe 'GET profile' do
 
-  let(:movie) { OMDB::Lookup.new('Star Wars') }
+  let(:movie) { OMDB.new('Star Wars') }
 
   api_key = ENV['OMDB_API_KEY']
   before do
+    VCR.configure do |c|
+      c.cassette_library_dir = 'spec/fixtures/omdb_cassettes'
+    end
+    
     VCR.insert_cassette 'movie', :record => :new_episodes
   end
   after do
     VCR.eject_cassette
   end
+
   it 'records the fixture' do
-    OMDB::Lookup.get("/?t=star+wars&plot=full&apikey=#{api_key}")
+    OMDB.get("/?t=star+wars&plot=full&apikey=#{api_key}")
   end   
 
   it 'must have a profile method' do

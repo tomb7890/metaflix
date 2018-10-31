@@ -6,7 +6,7 @@ class MoviesController < ApplicationController
 
   def show
     @movie = Movie.find(params[:id])
-    @fullprofile = OMDB::Lookup.new(@movie.title, @movie.year)
+    @fullprofile = OMDB.new(@movie.title, @movie.year)
   end
 
   private
