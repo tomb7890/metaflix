@@ -1,6 +1,14 @@
 <div class="row" id="movie_<%= movie.id %>">
     <div class="col-md-4">
+
+    <% unless movie.imgurl.empty?    %>
         <img class=movieposter src= <%= movie.imgurl %> </img>
+    <% else %>
+      <P style="font-size: xx-small; text-align: center; color: #AAAAAA; ">No image provided</P>
+    <% end  %>
+    
+
+    
     </div>
     <div class="col-md-4">
         <div class='ratings-bar'>
