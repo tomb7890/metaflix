@@ -24,9 +24,8 @@
                 <%= movie.metascore %>
             </div>
         </div>
-        <a target = _blank href="<%= movie.launchurl %>">
-            <%= movie.launchurl %>
-        </a>
+        <%=  render partial: "watchnow", locals: {movie: movie} %>
+        
     </div>
     <div class="col-md-4">
         <%= movie.description %>

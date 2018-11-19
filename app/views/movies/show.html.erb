@@ -4,6 +4,8 @@
 
     <% @fullprofile.Ratings.each do |r |   %>
 
+
+
       <%=  r['Source'] %>: <%=  %>
       <h1>  <%=  r['Value']   %> </h1> 
     <% end %>
@@ -13,6 +15,8 @@
   <div class="col-sm-8">
 
     <h2><%= @fullprofile.title %> </h2>
+
+    <h2><%=  render partial: "watchnow", locals: {movie: @movie} %></h2>
 
     <table class="table">
       <tr>
