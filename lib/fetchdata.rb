@@ -8,12 +8,12 @@ class Fetchdata
       movie_list = n.page(p)
       movie_list.each do |movie|
         begin
-          response = OMDB.new(movie['title'], movie['year'])
-          movie['Metascore'] = response.Metascore
-          movie['imdbRating'] = response.imdbRating
-          create_db_entry(movie)
-        rescue => e
-          puts "Fetchdata Exception: #{e}  "
+          o = OMDB.new(movie['title'], movie['year'])
+          unless o.profile.key?("Error")
+            movie['Metascore'] = o.Metascore
+            movie['imdbRating'] = o.imdbRating
+            create_db_entry(movie)
+          end
         end
       end
     end
@@ -22,12 +22,13 @@ class Fetchdata
   private
 
   def create_db_entry(attrs)
-    Movie.create(title:  attrs['title'], year: attrs['year'],
+    unless Movie.find_by(description: attrs['description'])
+      Movie.create(title:  attrs['title'], year: attrs['year'],
                  description: attrs['description'],
                  launchurl: attrs['launchurl'],
                  imgurl: attrs['imgurl'],
                  imdbscore: attrs['imdbRating'],
                  metascore: attrs['Metascore']) unless Movie.find_by(description: attrs['description'])
+    end
   end
-
 end
