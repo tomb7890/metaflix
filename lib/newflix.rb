@@ -7,7 +7,7 @@ class Newflix
     mechanize = Mechanize.new
     path = "/canada/netflix-canada-new-releases/#{page_number}"
     html_doc = dom_tree(path, mechanize)
-    movieentries = html_doc.xpath("//a[@class='link-arrow']/@href")
+    movieentries = html_doc.xpath("//a[@class='no_cookies_params link-arrow']/@href")
     movieentries.map{ |m| discover_attributes(m, mechanize) }
   end
 
