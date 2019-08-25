@@ -20,6 +20,7 @@ class Newflix
   end
 
   def discover_attributes(link, mechanize)
+    sleep(2.0)
     movieentry = dom_tree(link, mechanize)
     attrs = {}
     attrs['title'] = movieentry.xpath("//div[@class='single__header']//strong").text()
