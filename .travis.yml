@@ -1,4 +1,8 @@
-language: ruby 
+language: ruby
+
+services:
+  - postgresql
+
 script: 
 - export RAILS_ENV=test
 - bundle exec rake db:create db:schema:load db:test:prepare
