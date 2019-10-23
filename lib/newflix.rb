@@ -23,7 +23,7 @@ class Newflix
     sleep(2.0)
     movieentry = dom_tree(link, mechanize)
     attrs = {}
-    attrs['title'] = movieentry.xpath("//div[@class='single__header']//strong").text()
+    attrs['title'] = movieentry.xpath("//h1[@class='single__title']//strong").text()
     attrs['description'] = movieentry.xpath("//div[@class='single__section']//p")[0].text()
     attrs['year'] = movieentry.xpath("//div[@class='single__header']//small").text().gsub(/[()]/, '')
     attrs['launchurl']   = movieentry.xpath("//article/div/a/@href").text()
