@@ -7,7 +7,7 @@ class Newflix
     mechanize = Mechanize.new
     path = "/canada/netflix-canada-new-releases/#{page_number}"
     html_doc = dom_tree(path, mechanize)
-    movieentries = html_doc.xpath("//a[@class='no_cookies_params card__button link-prefix-icon']/@href")
+    movieentries = html_doc.xpath("//div[@class='card card--md layout-2 movie']")
     movieentries.map{ |m| discover_attributes(m, mechanize) }
   end
 
@@ -19,15 +19,17 @@ class Newflix
     Nokogiri::HTML(html)
   end
 
-  def discover_attributes(link, mechanize)
-    sleep(2.0)
-    movieentry = dom_tree(link, mechanize)
+  def discover_attributes(movieentry, mechanize)
     attrs = {}
-    attrs['title'] = movieentry.xpath("//h1[@class='single__title']//strong").text()
-    attrs['description'] = movieentry.xpath("//div[@class='single__section']//p")[0].text()
-    attrs['year'] = movieentry.xpath("//div[@class='single__header']//small").text().gsub(/[()]/, '')
-    attrs['launchurl']   = movieentry.xpath("//article/div/a/@href").text()
-    attrs['imgurl']      = movieentry.xpath("//img[@class='single__cover']/@src")
+    attrs['title'] = movieentry.xpath(".//span[@class='entry_name']").text()
+    attrs['description'] = movieentry.xpath(".//p[@class='truncate']").text()
+    attrs['launchurl'] = movieentry.xpath(".//a[@class='no_cookies_param card__button link-prefix-icon play_on_netflix']/@href").text
+    attrs['imgurl']      = movieentry.xpath(".//div[@class='card__cover']//img/@src").text
+
+    if attrs['imgurl'].empty? || attrs['imgurl'] =~ /^data\:image.*/ 
+      attrs['imgurl']      = movieentry.xpath(".//div[@class='card__cover']//img/@data-src").text
+    end
+    
     attrs
   end
 end

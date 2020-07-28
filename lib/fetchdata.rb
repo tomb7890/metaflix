@@ -8,10 +8,11 @@ class Fetchdata
       movie_list = n.page(p)
       movie_list.each do |movie|
         begin
-          o = OMDB.new(movie['title'], movie['year'])
+          o = OMDB.new(movie['title'])
           unless o.profile.key?("Error")
             movie['Metascore'] = o.Metascore
             movie['imdbRating'] = o.imdbRating
+            movie['plot'] = o.Plot 
             create_db_entry(movie)
           end
         end
@@ -23,8 +24,9 @@ class Fetchdata
 
   def create_db_entry(attrs)
     unless Movie.find_by(description: attrs['description'])
+
       Movie.create(title:  attrs['title'], year: attrs['year'],
-                 description: attrs['description'],
+                 description: attrs['plot'],
                  launchurl: attrs['launchurl'],
                  imgurl: attrs['imgurl'],
                  imdbscore: attrs['imdbRating'],
