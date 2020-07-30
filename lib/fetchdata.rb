@@ -23,14 +23,13 @@ class Fetchdata
   private
 
   def create_db_entry(attrs)
-    unless Movie.find_by(description: attrs['description'])
-
+    unless Movie.find_by(description: attrs['plot'])
       Movie.create(title:  attrs['title'], year: attrs['year'],
                  description: attrs['plot'],
                  launchurl: attrs['launchurl'],
                  imgurl: attrs['imgurl'],
                  imdbscore: attrs['imdbRating'],
-                 metascore: attrs['Metascore']) unless Movie.find_by(description: attrs['description'])
+                 metascore: attrs['Metascore']) 
     end
   end
 end
