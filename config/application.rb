@@ -34,5 +34,9 @@ module Metaflix
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # fix for problem with loading lib/*.rb appearing in upgrade to Rails 5
+    config.enable_dependency_loading = true
+
   end
 end
