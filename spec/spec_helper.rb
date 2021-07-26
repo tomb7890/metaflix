@@ -111,8 +111,6 @@ RSpec.configure do |config|
 
 end
 
-require_relative '../lib/newflix'
-require_relative '../lib/omdb'
 
 require 'webmock/rspec'
 require 'vcr'
