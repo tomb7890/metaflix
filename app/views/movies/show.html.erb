@@ -1,13 +1,23 @@
 <div class='row'>
   <div class="col-sm-4">
 
-    <%= image_tag( @fullprofile.Poster, class: "movie-fullprofile-poster") %> 
+    <div class="row">
+      <%= image_tag( @fullprofile.Poster, class: "movie-fullprofile-poster") %> 
+    </div>
 
     <% @fullprofile.Ratings.each do |r |   %>
-    <%=  r['Source'] %> : 
-    <h1>  <%=  r['Value']   %> </h1> 
+
+    <div class="row">
+      <div class="col-sm-6 fullprofile-ratings-source">
+	<%=  r['Source'] %> : 
+      </div>
+
+      <div class="col-sm-6 fullprofile-ratings-value">
+	<em> <%=  r['Value']   %>  </em>
+      </div>
+    </div>
     <% end %>
-    
+
   </div>  <!-- col -->
   
   <div class="col-sm-8">
